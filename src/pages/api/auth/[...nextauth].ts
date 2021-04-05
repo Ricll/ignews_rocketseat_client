@@ -3,7 +3,7 @@ import { query as q } from 'faunadb'
 import Providers from 'next-auth/providers'
 import { fauna } from '../../../services/fauna'
 
-fauna
+
 
 export default NextAuth({
   // Configure one or more authentication providers
