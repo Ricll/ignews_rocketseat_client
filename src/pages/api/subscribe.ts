@@ -51,7 +51,7 @@ if (req.method === 'POST') {
 
   
 
-  const stripeCheckoutSession = stripe.checkout.sessions.create({
+  const stripeCheckoutSession = await stripe.checkout.sessions.create({
     customer: customerId,
     payment_method_types: ['card'],
     billing_address_collection: 'required',
@@ -65,7 +65,7 @@ if (req.method === 'POST') {
     cancel_url: process.env.STRIPE_CANCEL_URL
   })
 
-  return res.status(200).json({sessionId: (await stripeCheckoutSession).id})
+  return res.status(200).json({sessionId: stripeCheckoutSession.id})
 } else {
   res.setHeader('Allow', 'POST');
   res.status(450).end('Method Allowed')
